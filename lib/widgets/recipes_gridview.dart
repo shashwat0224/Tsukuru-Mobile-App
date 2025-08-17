@@ -8,19 +8,19 @@ class RecipesGridview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        crossAxisSpacing: 8.0,
-        mainAxisSpacing: 8.0,
-      ),
-      shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
-      itemCount: count,
-      itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 0.0),
-          child: Container(
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: GridView.builder(
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 8.0,
+          mainAxisSpacing: 8.0,
+        ),
+        itemCount: count,
+        itemBuilder: (context, index) {
+          return Container(
             padding: EdgeInsets.all(8.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
@@ -46,12 +46,11 @@ class RecipesGridview extends StatelessWidget {
                 ),
                 SizedBox(height: 8),
                 Text(
-                  'qwertyuiop asdfghl zxcvbnm qwertyuiop asdfghjkl zxcvbnm qwertyuiop asdfghjkl zxcvbnm qwertyuiop asdfghjkl zxcvbnm',
+                  'qwertyuiop asdfghl zxcvbnm qwertyuiop asdfghjkl zxcvbnm qwertyuiop asdfghjkl zxcvbnm qwertyuiop asdfghjkl zxcvbnm qwertyuiop asdfghjkl zxcvbnm qwertyuiop asdfghjkl zxcvbnm qwertyuiop asdfghjkl zxcvbnm',
                   style: TextStyle(
                     fontFamily: "AmaticSC",
                     fontWeight: FontWeight.bold,
                     fontSize: 12,
-                    // overflow: TextOverflow.ellipsis,
                     color: Color(0XFFEDE490),
                   ),
                   overflow: TextOverflow.ellipsis,
@@ -59,9 +58,9 @@ class RecipesGridview extends StatelessWidget {
                 ),
               ],
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }
