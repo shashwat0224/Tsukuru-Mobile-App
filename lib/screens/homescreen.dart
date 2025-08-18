@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:tsukuru/providers/navigation_provider.dart';
 import 'package:tsukuru/widgets/recipes_gridview.dart';
 import 'package:tsukuru/widgets/uihelper.dart';
 
@@ -16,7 +18,6 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
-            // mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(height: 8),
               SizedBox(
@@ -35,7 +36,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      context.read<NaviagtionProvider>().setIndex(1);
+                    },
                     child: UiHelper.customText(
                       title: "Start Cookin'",
                       size: 16,
@@ -47,7 +50,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   SizedBox(width: 5),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      context.read<NaviagtionProvider>().setIndex(2);
+                    },
                     child: UiHelper.customText(
                       title: "Explore Recipes",
                       size: 16,

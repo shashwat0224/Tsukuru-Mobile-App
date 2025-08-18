@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:tsukuru/providers/navigation_provider.dart';
 import 'package:tsukuru/screens/explorescreen.dart';
 import 'package:tsukuru/screens/searchscreen.dart';
 import 'package:tsukuru/widgets/custom_sidebar.dart';
@@ -13,8 +15,7 @@ class TemplateScreen extends StatefulWidget {
 }
 
 class _TemplateScreenState extends State<TemplateScreen> {
-  int currentIndex = 0;
-  List<Widget> pages = [HomeScreen(),SearchScreen(),ExploreScreen()];
+  List<Widget> pages = [HomeScreen(), SearchScreen(), ExploreScreen()];
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,12 @@ class _TemplateScreenState extends State<TemplateScreen> {
         iconTheme: IconThemeData(color: Colors.white),
         backgroundColor: Color(0XFFB53145),
       ),
-      body: SafeArea(child: IndexedStack(index: currentIndex, children: pages)),
+      body: SafeArea(
+        child: IndexedStack(
+          index: context.watch<NaviagtionProvider>().selectedIndex,
+          children: pages,
+        ),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
@@ -33,7 +39,7 @@ class _TemplateScreenState extends State<TemplateScreen> {
           BottomNavigationBarItem(icon: Icon(Icons.explore), label: 'Explore'),
         ],
         type: BottomNavigationBarType.fixed,
-        currentIndex: currentIndex,
+        currentIndex: context.watch<NaviagtionProvider>().selectedIndex,
         showUnselectedLabels: false,
         showSelectedLabels: false,
         elevation: 1.0,
@@ -43,7 +49,7 @@ class _TemplateScreenState extends State<TemplateScreen> {
         unselectedItemColor: Colors.black,
         onTap: (index) {
           setState(() {
-            currentIndex = index;
+            context.read<NaviagtionProvider>().setIndex(index);
           });
         },
       ),
