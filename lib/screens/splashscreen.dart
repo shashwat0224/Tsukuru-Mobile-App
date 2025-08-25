@@ -2,7 +2,8 @@ import 'dart:async';
 // import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:tsukuru/screens/templatescreen.dart';
+import 'package:tsukuru/screens/loginscreen.dart';
+// import 'package:tsukuru/screens/templatescreen.dart';
 import 'package:tsukuru/widgets/uihelper.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -19,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => TemplateScreen()),
+        MaterialPageRoute(builder: (context) => LoginScreen()),
       );
     });
   }
@@ -31,14 +32,29 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Container(
           width: double.infinity,
           decoration: BoxDecoration(
-            gradient: LinearGradient(colors: [Colors.blueGrey,Color(0XFFB53145),Colors.purple,Colors.deepPurple,Colors.blueAccent,Colors.white],begin: Alignment.topLeft, end: Alignment.bottomRight, )
+            gradient: LinearGradient(
+              colors: [
+                Colors.blueGrey,
+                Color(0XFFB53145),
+                Colors.purple,
+                Colors.deepPurple,
+                Colors.blueAccent,
+                Colors.white,
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              UiHelper.customText(title: 'つくる',size: 45,color: Colors.white),
-              SizedBox(height: 10,),
-              UiHelper.customText(title: 'Tsukuru', size: 36, color: Colors.white),
+              UiHelper.customText(title: 'つくる', size: 45, color: Colors.white),
+              SizedBox(height: 10),
+              UiHelper.customText(
+                title: 'Tsukuru',
+                size: 36,
+                color: Colors.white,
+              ),
             ],
           ),
         ),

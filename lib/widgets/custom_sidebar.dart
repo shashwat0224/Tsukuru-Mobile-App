@@ -9,10 +9,7 @@ class CustomSidebar extends StatelessWidget {
     bool value = false;
 
     List<Widget> drawerHeaderSignedIn = [
-      CircleAvatar(
-        child: UiHelper.customImage(img: 'default-pfp.png'),
-        radius: 34,
-      ),
+      CircleAvatar(child: UiHelper.customImage(img: 'pfp.png'), radius: 34),
       SizedBox(height: 3),
       UiHelper.customText(title: 'Username', size: 22, color: Colors.black),
       UiHelper.customText(
@@ -47,22 +44,22 @@ class CustomSidebar extends StatelessWidget {
     return SafeArea(
       child: Drawer(
         width: MediaQuery.of(context).size.width * 0.69,
-        backgroundColor: Color(0XFFB53145),
+        backgroundColor: const Color(0XFFB53145),
         surfaceTintColor: Colors.white,
         child: ListView(
           children: [
             Container(
-              padding: EdgeInsets.fromLTRB(16, 16, 16, 16),
-              decoration: BoxDecoration(color: Colors.white),
+              padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
+              decoration: const BoxDecoration(color: Colors.white),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: (value)
-                    ? drawerHeaderSignedIn
-                    : drawerHeaderSignedOut,
+                    ? drawerHeaderSignedOut
+                    : drawerHeaderSignedIn,
               ),
             ),
             ListTile(
-              leading: Icon(Icons.person, color: Colors.white),
+              leading: const Icon(Icons.person, color: Colors.white),
               title: UiHelper.customText(
                 title: 'Profile',
                 size: 20,
@@ -71,7 +68,7 @@ class CustomSidebar extends StatelessWidget {
               onTap: () {},
             ),
             ListTile(
-              leading: Icon(Icons.settings, color: Colors.white),
+              leading: const Icon(Icons.settings, color: Colors.white),
               title: UiHelper.customText(
                 title: 'Settings',
                 size: 20,
@@ -79,17 +76,17 @@ class CustomSidebar extends StatelessWidget {
               ),
               onTap: () {},
             ),
+            // ListTile(
+            //   leading: Icon(Icons.save_alt, color: Colors.white),
+            //   title: UiHelper.customText(
+            //     title: 'Saved',
+            //     size: 20,
+            //     color: Colors.white,
+            //   ),
+            //   onTap: () {},
+            // ),
             ListTile(
-              leading: Icon(Icons.save_alt, color: Colors.white),
-              title: UiHelper.customText(
-                title: 'Saved',
-                size: 20,
-                color: Colors.white,
-              ),
-              onTap: () {},
-            ),
-            ListTile(
-              leading: Icon(Icons.favorite, color: Colors.white),
+              leading: const Icon(Icons.favorite, color: Colors.white),
               title: UiHelper.customText(
                 title: 'Favourites',
                 size: 20,
@@ -98,7 +95,7 @@ class CustomSidebar extends StatelessWidget {
               onTap: () {},
             ),
             ListTile(
-              leading: Icon(Icons.info, color: Colors.white),
+              leading: const Icon(Icons.info, color: Colors.white),
               title: UiHelper.customText(
                 title: 'About Us',
                 size: 20,
@@ -107,7 +104,7 @@ class CustomSidebar extends StatelessWidget {
               onTap: () {},
             ),
             ListTile(
-              leading: Icon(Icons.help, color: Colors.white),
+              leading: const Icon(Icons.help, color: Colors.white),
               title: UiHelper.customText(
                 title: 'Help & Support',
                 size: 20,

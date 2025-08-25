@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tsukuru/screens/recipescreen.dart';
 import 'package:tsukuru/widgets/uihelper.dart';
 
 class RecipesGridview extends StatelessWidget {
@@ -22,11 +23,14 @@ class RecipesGridview extends StatelessWidget {
         itemBuilder: (context, index) {
           return InkWell(
             onTap: () {
-              print('tapped');
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => RecipeScreen()),
+              );
             },
-            onDoubleTap: () {
-              print('double tapped');
-            },
+            // onDoubleTap: () {
+            //   print('double tapped');
+            // },
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 4.0),
               child: Container(

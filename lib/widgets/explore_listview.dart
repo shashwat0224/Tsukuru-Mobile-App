@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tsukuru/screens/recipescreen.dart';
 import 'package:tsukuru/widgets/uihelper.dart';
 
 class ExploreListview extends StatelessWidget {
@@ -25,11 +26,14 @@ class ExploreListview extends StatelessWidget {
             itemBuilder: (context, index) {
               return InkWell(
                 onTap: () {
-                  print('onTap');
+                  Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => RecipeScreen()),
+              );
                 },
-                onDoubleTap: () {
-                  print('onDoubleTap');
-                },
+                // onDoubleTap: () {
+                //   print('onDoubleTap');
+                // },
                 child: Padding(
                   padding: const EdgeInsets.all(5),
                   child: Container(
