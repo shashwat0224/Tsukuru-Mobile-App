@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 
 class UiHelper {
-  static customImage({required String img}) {
+  static Image customImage({required String img}) {
     return Image.asset('assets/images/$img');
   }
 
-  static customText({
+  static Text customText({
     required String title,
     required double size,
     required Color color,
+    String? fontFamily,
   }) {
     return Text(
       title,
       style: TextStyle(
-        fontFamily: "AmaticSC",
+        fontFamily: fontFamily ?? "Raleway",
         fontWeight: FontWeight.bold,
         fontSize: size,
         color: color,
@@ -21,7 +22,7 @@ class UiHelper {
     );
   }
 
-  static customHeaderText({
+  static Row customHeaderText({
     required String title,
     required double size,
     required Color color,
@@ -41,7 +42,7 @@ class UiHelper {
             fontSize: size,
             fontWeight: FontWeight.bold,
             color: color,
-            fontFamily: "AmaticSC",
+            fontFamily: "Alata",
           ),
         ),
         Expanded(

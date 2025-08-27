@@ -187,12 +187,12 @@ class _SignupscreenState extends State<Signupscreen> {
               SizedBox(height: 45),
               ElevatedButton(
                 onPressed: () {},
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
                 child: UiHelper.customText(
                   title: 'Login',
                   size: 18,
                   color: Colors.black,
                 ),
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

@@ -3,7 +3,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:tsukuru/screens/loginscreen.dart';
-// import 'package:tsukuru/screens/templatescreen.dart';
 import 'package:tsukuru/widgets/uihelper.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -17,10 +16,14 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 3), () {
+    Timer(Duration(days: 1), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => LoginScreen()),
+        MaterialPageRoute(
+          builder: (context) {
+            return LoginScreen();
+          },
+        ),
       );
     });
   }

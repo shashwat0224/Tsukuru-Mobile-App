@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tsukuru/providers/navigation_provider.dart';
+import 'package:tsukuru/core/providers/navigation_provider.dart';
 import 'package:tsukuru/screens/explorescreen.dart';
 import 'package:tsukuru/screens/searchscreen.dart';
 import 'package:tsukuru/widgets/custom_sidebar.dart';
@@ -21,7 +21,7 @@ class _TemplateScreenState extends State<TemplateScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: UiHelper.customText(title: 'つくる', size: 22, color: Colors.white),
+        title: UiHelper.customText(title: 'つくる', size: 22, color: Colors.white, fontFamily: 'Raleway'),
         centerTitle: true,
         iconTheme:const IconThemeData(color: Colors.white),
         backgroundColor:const Color(0XFFB53145),

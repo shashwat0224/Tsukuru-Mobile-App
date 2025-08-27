@@ -6,40 +6,40 @@ class CustomSidebar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool value = false;
+    // bool value = false;
 
-    List<Widget> drawerHeaderSignedIn = [
-      CircleAvatar(child: UiHelper.customImage(img: 'pfp.png'), radius: 34),
-      SizedBox(height: 3),
-      UiHelper.customText(title: 'Username', size: 22, color: Colors.black),
-      UiHelper.customText(
-        title: 'username@example.com',
-        size: 16,
-        color: Colors.black,
-      ),
-    ];
-    List<Widget> drawerHeaderSignedOut = [
-      UiHelper.customText(
-        title: 'Want to Add Recipes to',
-        size: 22,
-        color: Colors.black,
-      ),
-      UiHelper.customText(
-        title: 'favourites, Save Recipes',
-        size: 22,
-        color: Colors.black,
-      ),
-      UiHelper.customText(title: 'on Device', size: 22, color: Colors.black),
-      ElevatedButton(
-        onPressed: () {},
-        child: UiHelper.customText(
-          title: 'Login Now!',
-          size: 16,
-          color: Colors.white,
-        ),
-        style: ElevatedButton.styleFrom(backgroundColor: Color(0XFF98AA8D)),
-      ),
-    ];
+    // List<Widget> drawerHeaderSignedIn = [
+    //   CircleAvatar(radius: 34, child: UiHelper.customImage(img: 'pfp.png')),
+    //   SizedBox(height: 3),
+    //   UiHelper.customText(title: 'Username', size: 22, color: Colors.black),
+    //   UiHelper.customText(
+    //     title: 'username@example.com',
+    //     size: 16,
+    //     color: Colors.black,
+    //   ),
+    // ];
+    // List<Widget> drawerHeaderSignedOut = [
+    //   UiHelper.customText(
+    //     title: 'Want to Add Recipes to',
+    //     size: 22,
+    //     color: Colors.black,
+    //   ),
+    //   UiHelper.customText(
+    //     title: 'favourites, Save Recipes',
+    //     size: 22,
+    //     color: Colors.black,
+    //   ),
+    //   UiHelper.customText(title: 'on Device', size: 22, color: Colors.black),
+    //   ElevatedButton(
+    //     onPressed: () {},
+    //     style: ElevatedButton.styleFrom(backgroundColor: Color(0XFF98AA8D)),
+    //     child: UiHelper.customText(
+    //       title: 'Login Now!',
+    //       size: 16,
+    //       color: Colors.white,
+    //     ),
+    //   ),
+    // ];
 
     return SafeArea(
       child: Drawer(
@@ -48,16 +48,16 @@ class CustomSidebar extends StatelessWidget {
         surfaceTintColor: Colors.white,
         child: ListView(
           children: [
-            Container(
-              padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
-              decoration: const BoxDecoration(color: Colors.white),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: (value)
-                    ? drawerHeaderSignedOut
-                    : drawerHeaderSignedIn,
-              ),
-            ),
+            // Container(
+            //   padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
+            //   decoration: const BoxDecoration(color: Colors.white),
+            //   child: Column(
+            //     mainAxisSize: MainAxisSize.min,
+            //     children: (value)
+            //         ? drawerHeaderSignedOut
+            //         : drawerHeaderSignedIn,
+            //   ),
+            // ),
             ListTile(
               leading: const Icon(Icons.person, color: Colors.white),
               title: UiHelper.customText(

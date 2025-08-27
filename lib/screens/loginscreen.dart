@@ -83,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.fromLTRB(26, 8, 2, 2),
                     hint: UiHelper.customText(
-                      title: 'rudrEnter Your Email ID',
+                      title: 'Enter Your Email ID',
                       size: 18,
                       color: Colors.black,
                     ),
@@ -139,12 +139,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     MaterialPageRoute(builder: (context) => TemplateScreen()),
                   );
                 },
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
                 child: UiHelper.customText(
                   title: 'Login',
                   size: 18,
                   color: Colors.black,
                 ),
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

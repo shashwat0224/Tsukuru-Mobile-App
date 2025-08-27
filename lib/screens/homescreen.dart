@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tsukuru/providers/navigation_provider.dart';
+import 'package:tsukuru/core/providers/navigation_provider.dart';
 import 'package:tsukuru/widgets/recipes_gridview.dart';
 import 'package:tsukuru/widgets/uihelper.dart';
 
@@ -39,13 +39,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     onPressed: () {
                       context.read<NaviagtionProvider>().setIndex(1);
                     },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0XFFB53145),
+                    ),
                     child: UiHelper.customText(
                       title: "Start Cookin'",
                       size: 16,
                       color: Colors.white,
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0XFFB53145),
                     ),
                   ),
                   SizedBox(width: 5),
@@ -53,13 +53,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     onPressed: () {
                       context.read<NaviagtionProvider>().setIndex(2);
                     },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0XFFB53145),
+                    ),
                     child: UiHelper.customText(
                       title: "Explore Recipes",
                       size: 16,
                       color: Colors.white,
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0XFFB53145),
                     ),
                   ),
                 ],
