@@ -4,6 +4,7 @@ import 'package:tsukuru/core/providers/internetstatus_provider.dart';
 import 'package:tsukuru/core/providers/navigation_provider.dart';
 import 'package:tsukuru/core/lifecycle/applifecycle.dart';
 import 'package:tsukuru/screens/splashscreen.dart';
+import 'package:tsukuru/widgets/status_snackbar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -43,6 +44,7 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (context) => InternetStatusProvider()),
       ],
       child: MaterialApp(
+        scaffoldMessengerKey: SnackbarService.messengerKey,
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
         home: const SplashScreen(),

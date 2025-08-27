@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
-import 'package:tsukuru/widgets/uihelper.dart';
+import 'package:tsukuru/widgets/status_snackbar.dart';
 
 class InternetStatusProvider extends ChangeNotifier {
   // how to integrate internet connection checker plus with provider in flutter app
@@ -16,16 +16,21 @@ class InternetStatusProvider extends ChangeNotifier {
     _subscription = InternetConnection().onStatusChange.listen((status) async {
       switch (status) {
         case InternetStatus.connected:
-          
+          final access = await InternetConnection().hasInternetAccess;
+          _isConnected = access;
+          if (_isConnected) {
+            SnackbarService.show('Back Online !!', Colors.green);
+          } else {
+            SnackbarService.show('No Internet Connection !!', Colors.red);
+          }
           break;
         case InternetStatus.disconnected:
-          
+          _isConnected = false;
+          SnackbarService.show('No Internet Connection !!', Colors.red);
           break;
       }
     });
   }
-
-  
 
   void onPauseHide() {
     _subscription.pause();
