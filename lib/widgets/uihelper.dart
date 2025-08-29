@@ -10,6 +10,7 @@ class UiHelper {
     required double size,
     required Color color,
     String? fontFamily,
+    TextAlign? textAlign,
   }) {
     return Text(
       title,
@@ -19,7 +20,7 @@ class UiHelper {
         fontSize: size,
         color: color,
       ),
-      textAlign: TextAlign.center,
+      textAlign: textAlign ?? TextAlign.center,
     );
   }
 
