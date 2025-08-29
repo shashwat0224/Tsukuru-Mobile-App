@@ -7,7 +7,13 @@ import 'package:tsukuru/screens/splashscreen.dart';
 import 'package:tsukuru/widgets/status_snackbar.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => NaviagtionProvider(),
+        ),
+        ChangeNotifierProvider(create: (_) => InternetStatusProvider()),
+      ],child: const MyApp()));
 }
 
 class MyApp extends StatefulWidget {
@@ -36,19 +42,11 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (context) => NaviagtionProvider(context: context),
-        ),
-        ChangeNotifierProvider(create: (context) => InternetStatusProvider()),
-      ],
-      child: MaterialApp(
+    return MaterialApp(
         scaffoldMessengerKey: SnackbarService.messengerKey,
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
-        home: const SplashScreen(),
-      ),
+        home: SplashScreen(),
     );
   }
 }

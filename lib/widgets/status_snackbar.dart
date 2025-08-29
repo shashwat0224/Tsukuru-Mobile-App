@@ -20,7 +20,7 @@ class SnackbarService {
           borderRadius: BorderRadius.circular(16),
         ),
         backgroundColor: color,
-        duration: const Duration(days: 1),
+        duration: const Duration(seconds: 2),
       ),
     );
   }

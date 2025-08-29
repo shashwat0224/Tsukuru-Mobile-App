@@ -55,12 +55,12 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(height: 15),
               Center(
                 child: Text(
-                  'Welcome back\n to Tsukuru!!!',
+                  'Welcome back to Tsukuru!!!',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 64,
                     fontWeight: FontWeight.bold,
-                    fontFamily: "AmaticSC",
+                    fontFamily: "Alata",
                     color: Colors.black,
                   ),
                 ),
@@ -81,11 +81,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: TextField(
                   controller: emailController,
                   decoration: InputDecoration(
-                    contentPadding: EdgeInsets.fromLTRB(26, 8, 2, 2),
-                    hint: UiHelper.customText(
-                      title: 'Enter Your Email ID',
-                      size: 18,
-                      color: Colors.black,
+                    contentPadding: EdgeInsets.fromLTRB(26, 5, 2, 2),
+                    hint: Text(
+                      'Enter Your Email ID',
+                      style: TextStyle(fontSize: 18, color: Colors.black),
                     ),
                     border: InputBorder.none,
                   ),
@@ -106,11 +105,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   obscureText: obscure,
                   controller: passController,
                   decoration: InputDecoration(
-                    contentPadding: EdgeInsets.fromLTRB(26, 8, 2, 2),
-                    hint: UiHelper.customText(
-                      title: 'Enter Your Password',
-                      size: 18,
-                      color: Colors.black,
+                    contentPadding: EdgeInsets.fromLTRB(26, 10, 2, 2),
+                    hint: Text(
+                      'Enter Your Password',
+                      style: TextStyle(fontSize: 18, color: Colors.black),
                     ),
                     suffixIcon: IconButton(
                       onPressed: () {

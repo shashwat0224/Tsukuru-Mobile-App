@@ -14,21 +14,23 @@ class InternetStatusProvider extends ChangeNotifier {
   }
   void startListening() {
     _subscription = InternetConnection().onStatusChange.listen((status) async {
+      print(status);
       switch (status) {
         case InternetStatus.connected:
           final access = await InternetConnection().hasInternetAccess;
           _isConnected = access;
           if (_isConnected) {
-            SnackbarService.show('Back Online !!', Colors.green);
+            SnackbarService.show('Back Online !!', Colors.green[400]!);
           } else {
-            SnackbarService.show('No Internet Connection !!', Colors.red);
+            SnackbarService.show('No Internet Connection !!', Colors.red[400]!);
           }
           break;
         case InternetStatus.disconnected:
           _isConnected = false;
-          SnackbarService.show('No Internet Connection !!', Colors.red);
+          SnackbarService.show('No Internet Connection !!', Colors.red[400]!);
           break;
       }
+      notifyListeners();
     });
   }
 

@@ -27,9 +27,10 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               SizedBox(height: 8),
               UiHelper.customText(
-                title: 'CRAFTING CRAVINGS, ONE CLICK AWAY',
+                title: 'CRAFTING CRAVINGS,\nONE CLICK AWAY',
                 size: 26,
                 color: Color(0XFFB53145),
+                fontFamily: 'Alata',
               ),
               SizedBox(height: 8),
               Row(

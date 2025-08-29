@@ -16,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(days: 1), () {
+    Timer(Duration(seconds: 2), () {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
@@ -51,12 +51,13 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              UiHelper.customText(title: 'つくる', size: 45, color: Colors.white),
+              UiHelper.customText(title: 'つくる', size: 45, color: Colors.white, fontFamily: 'Alata'),
               SizedBox(height: 10),
               UiHelper.customText(
                 title: 'Tsukuru',
                 size: 36,
                 color: Colors.white,
+                fontFamily: 'Alata',
               ),
             ],
           ),

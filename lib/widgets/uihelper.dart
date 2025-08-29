@@ -19,6 +19,7 @@ class UiHelper {
         fontSize: size,
         color: color,
       ),
+      textAlign: TextAlign.center,
     );
   }
 

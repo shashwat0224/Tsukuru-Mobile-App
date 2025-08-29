@@ -46,6 +46,7 @@ class RecipesGridview extends StatelessWidget {
                       title: 'Recipe Name',
                       size: 18,
                       color: Colors.black,
+                      fontFamily: 'Alata',
                     ),
                     SizedBox(height: 8),
                     Container(
