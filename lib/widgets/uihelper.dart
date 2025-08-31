@@ -9,6 +9,7 @@ class UiHelper {
     required String title,
     required double size,
     required Color color,
+    FontWeight? fontWeight,
     String? fontFamily,
     TextAlign? textAlign,
   }) {
@@ -16,7 +17,7 @@ class UiHelper {
       title,
       style: TextStyle(
         fontFamily: fontFamily ?? "Raleway",
-        fontWeight: FontWeight.bold,
+        fontWeight: fontWeight ?? FontWeight.bold,
         fontSize: size,
         color: color,
       ),

@@ -36,7 +36,6 @@ dependencies:
   cupertino_icons: ^1.0.8
   provider: ^6.1.5
   internet_connection_checker_plus: ^2.7.2
-  csv: ^6.0.0
 
 dev_dependencies:
   flutter_test:
@@ -81,5 +80,8 @@ flutter:
     - family: Raleway
       fonts:
         - asset: assets/fonts/Raleway-VariableFont_wght.ttf
+    - family: Merriweather
+      fonts:
+        - asset: assets/fonts/Merriweather-VariableFont_opsz,wdth,wght.ttf
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
