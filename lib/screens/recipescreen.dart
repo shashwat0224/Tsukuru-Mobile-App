@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tsukuru/widgets/status_snackbar.dart';
 import 'package:tsukuru/widgets/uihelper.dart';
 
 class RecipeScreen extends StatelessWidget {
@@ -6,7 +7,6 @@ class RecipeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     List<String> ingredients = [
       '3 tablespoons whipping cream',
       '1/4 teaspoon crushed saffron threads',
@@ -63,7 +63,20 @@ class RecipeScreen extends StatelessWidget {
         title: UiHelper.customText(title: 'つくる', size: 22, color: Colors.white),
         centerTitle: true,
         iconTheme: IconThemeData(color: Colors.white),
-        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.download_rounded)),IconButton(onPressed: () {}, icon: Icon(Icons.favorite)),],
+        actions: [
+          IconButton(
+            onPressed: () {
+              SnackbarService.show('Added to Favourites', Colors.grey);
+            },
+            icon: Icon(Icons.download_rounded),
+          ),
+          IconButton(
+            onPressed: () {
+              SnackbarService.show('Added to Favourites', Colors.grey);
+            },
+            icon: Icon(Icons.favorite),
+          ),
+        ],
       ),
       body: SafeArea(
         child: SingleChildScrollView(

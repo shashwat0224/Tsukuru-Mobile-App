@@ -14,7 +14,6 @@ class InternetStatusProvider extends ChangeNotifier {
   }
   void startListening() {
     _subscription = InternetConnection().onStatusChange.listen((status) async {
-      print(status);
       switch (status) {
         case InternetStatus.connected:
           final access = await InternetConnection().hasInternetAccess;

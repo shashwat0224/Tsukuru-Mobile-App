@@ -79,6 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     title: 'TRENDING RECIPES',
                     size: 24,
                     color: Color(0XFFB53145),
+                    fontFamily: 'Alata',
                   ),
                 ],
               ),
