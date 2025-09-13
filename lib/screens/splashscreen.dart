@@ -2,7 +2,7 @@ import 'dart:async';
 // import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:tsukuru/screens/loginscreen.dart';
+import 'package:tsukuru/screens/authscreens/loginscreen.dart';
 import 'package:tsukuru/widgets/uihelper.dart';
 
 class SplashScreen extends StatefulWidget {

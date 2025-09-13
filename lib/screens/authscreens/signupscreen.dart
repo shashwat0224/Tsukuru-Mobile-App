@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tsukuru/api/api_func.dart';
+import 'package:tsukuru/screens/authscreens/loginscreen.dart';
 import 'package:tsukuru/widgets/uihelper.dart';
 
 class Signupscreen extends StatefulWidget {
@@ -9,24 +11,11 @@ class Signupscreen extends StatefulWidget {
 }
 
 class _SignupscreenState extends State<Signupscreen> {
+  TextEditingController usernameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController pass1Controller = TextEditingController();
   TextEditingController pass2Controller = TextEditingController();
-  String error1Text = ' ';
-  String error2Text = ' ';
   bool obscure = true;
-
-  void validatePass() {
-    if (pass1Controller.text.length < 8) {
-      setState(() {
-        error1Text = 'Password Too Small';
-      });
-    } else {
-      setState(() {
-        error1Text = ' ';
-      });
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,13 +63,35 @@ class _SignupscreenState extends State<Signupscreen> {
                   color: Colors.yellow[200],
                 ),
                 child: TextField(
+                  controller: usernameController,
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.fromLTRB(26, 5, 2, 2),
+                    hint: Text(
+                      'Enter Your Username',
+                      style: TextStyle(fontSize: 18, color: Colors.black),
+                    ),
+                    border: InputBorder.none,
+                  ),
+                ),
+              ),
+              SizedBox(height: 15),
+              Container(
+                decoration: BoxDecoration(
+                  border: BoxBorder.all(
+                    width: 2,
+                    color: Colors.black,
+                    style: BorderStyle.solid,
+                  ),
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.yellow[200],
+                ),
+                child: TextField(
                   controller: emailController,
                   decoration: InputDecoration(
-                    contentPadding: EdgeInsets.only(left: 8),
-                    hint: UiHelper.customText(
-                      title: '     Enter Your Email ID',
-                      size: 18,
-                      color: Colors.black,
+                    contentPadding: EdgeInsets.fromLTRB(26, 5, 2, 2),
+                    hint: Text(
+                      'Enter Your Email ID',
+                      style: TextStyle(fontSize: 18, color: Colors.black),
                     ),
                     border: InputBorder.none,
                   ),
@@ -101,11 +112,10 @@ class _SignupscreenState extends State<Signupscreen> {
                   obscureText: obscure,
                   controller: pass1Controller,
                   decoration: InputDecoration(
-                    contentPadding: EdgeInsets.only(left: 8),
-                    hint: UiHelper.customText(
-                      title: '     Enter Your Password',
-                      size: 18,
-                      color: Colors.black,
+                    contentPadding: EdgeInsets.fromLTRB(26, 10, 2, 2),
+                    hint: Text(
+                      'Enter Your Password',
+                      style: TextStyle(fontSize: 18, color: Colors.black),
                     ),
                     suffixIcon: IconButton(
                       onPressed: () {
@@ -117,25 +127,10 @@ class _SignupscreenState extends State<Signupscreen> {
                     ),
                     border: InputBorder.none,
                   ),
-                  onEditingComplete: () {
-                    if (pass1Controller.text.length < 8) {
-                      setState(() {
-                        error1Text = '\nPassword Too Small\n';
-                      });
-                    } else {
-                      setState(() {
-                        error1Text = ' ';
-                      });
-                    }
-                  },
+                  onEditingComplete: () {},
                 ),
               ),
               SizedBox(height: 10),
-              UiHelper.customText(
-                title: error1Text,
-                size: 18,
-                color: Colors.redAccent,
-              ),
               Container(
                 decoration: BoxDecoration(
                   border: BoxBorder.all(
@@ -150,11 +145,10 @@ class _SignupscreenState extends State<Signupscreen> {
                   obscureText: obscure,
                   controller: pass1Controller,
                   decoration: InputDecoration(
-                    contentPadding: EdgeInsets.only(left: 8),
-                    hint: UiHelper.customText(
-                      title: '     Re-Enter Your Password',
-                      size: 18,
-                      color: Colors.black,
+                    contentPadding: EdgeInsets.fromLTRB(26, 10, 2, 2),
+                    hint: Text(
+                      'Re-Enter Your Password',
+                      style: TextStyle(fontSize: 18, color: Colors.black),
                     ),
                     suffixIcon: IconButton(
                       onPressed: () {
@@ -166,30 +160,23 @@ class _SignupscreenState extends State<Signupscreen> {
                     ),
                     border: InputBorder.none,
                   ),
-                  onEditingComplete: () {
-                    if (pass1Controller.text.length < 8) {
-                      setState(() {
-                        error1Text = '\nPassword Too Small\n';
-                      });
-                    } else {
-                      setState(() {
-                        error1Text = ' ';
-                      });
-                    }
-                  },
+                  onEditingComplete: () {},
                 ),
-              ),SizedBox(height: 10),
-              UiHelper.customText(
-                title: error2Text,
-                size: 18,
-                color: Colors.redAccent,
               ),
+              SizedBox(height: 10),
               SizedBox(height: 45),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  singup(
+                    usernameController.text,
+                    emailController.text,
+                    pass1Controller.text,
+                    pass2Controller.text,
+                  );
+                },
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
                 child: UiHelper.customText(
-                  title: 'Login',
+                  title: 'Sign Up',
                   size: 18,
                   color: Colors.black,
                 ),
@@ -203,7 +190,12 @@ class _SignupscreenState extends State<Signupscreen> {
                     color: Colors.black,
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => LoginScreen()),
+                      );
+                    },
                     child: UiHelper.customText(
                       title: 'Login Now!',
                       size: 18,

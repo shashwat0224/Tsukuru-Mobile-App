@@ -40,7 +40,6 @@ class InternetStatusProvider extends ChangeNotifier {
 
   void onResume() {
     _subscription.resume();
-
     notifyListeners();
   }
 

@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:tsukuru/api/api_func.dart';
 import 'package:tsukuru/core/providers/internetstatus_provider.dart';
 import 'package:tsukuru/core/providers/navigation_provider.dart';
 import 'package:tsukuru/core/lifecycle/applifecycle.dart';
 import 'package:tsukuru/screens/splashscreen.dart';
 import 'package:tsukuru/widgets/status_snackbar.dart';
 
-void main() {
-  runApp(MultiProvider(
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  runApp(
+    MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-          create: (_) => NaviagtionProvider(),
-        ),
+        ChangeNotifierProvider(create: (_) => NaviagtionProvider()),
         ChangeNotifierProvider(create: (_) => InternetStatusProvider()),
-      ],child: const MyApp()));
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatefulWidget {
@@ -29,6 +35,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    updateCsrfToken();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _lifeCycleHandler = AppLifeCycleHandler(context);
     });
@@ -43,10 +50,10 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        scaffoldMessengerKey: SnackbarService.messengerKey,
-        title: 'Flutter Demo',
-        debugShowCheckedModeBanner: false,
-        home: SplashScreen(),
+      scaffoldMessengerKey: SnackbarService.messengerKey,
+      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      home: SplashScreen(),
     );
   }
 }

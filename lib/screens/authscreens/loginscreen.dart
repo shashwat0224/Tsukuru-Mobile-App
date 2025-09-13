@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tsukuru/screens/templatescreen.dart';
+import 'package:tsukuru/api/api_func.dart';
+import 'package:tsukuru/screens/authscreens/signupscreen.dart';
+// import 'package:tsukuru/screens/templatescreen.dart';
 import 'package:tsukuru/widgets/uihelper.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -12,19 +14,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passController = TextEditingController();
-  String errorText = ' ';
   bool obscure = true;
-  void validatePass() {
-    if (passController.text.length < 8) {
-      setState(() {
-        errorText = 'Password Too Small';
-      });
-    } else {
-      setState(() {
-        errorText = ' ';
-      });
-    }
-  }
 
   @override
   void dispose() {
@@ -120,26 +110,21 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     border: InputBorder.none,
                   ),
-                  onEditingComplete: () => validatePass(),
+                  onEditingComplete: () {},
                 ),
               ),
               SizedBox(height: 10),
-              UiHelper.customText(
-                title: errorText,
-                size: 18,
-                color: Colors.redAccent,
-              ),
               SizedBox(height: 45),
               ElevatedButton(
-                onPressed: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => TemplateScreen()),
+                onPressed: () async {
+                  await login(
+                    emailController.text,
+                    passController.text,
                   );
                 },
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
                 child: UiHelper.customText(
-                  title: 'Login',
+                  title: 'Log In',
                   size: 18,
                   color: Colors.black,
                 ),
@@ -153,7 +138,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     color: Colors.black,
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => Signupscreen()),
+                      );
+                    },
                     child: UiHelper.customText(
                       title: 'Create Now!',
                       size: 18,
