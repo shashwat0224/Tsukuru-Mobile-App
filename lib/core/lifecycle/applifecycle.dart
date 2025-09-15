@@ -8,9 +8,9 @@ class AppLifeCycleHandler {
 
   AppLifeCycleHandler(this.context) {
     _listener = AppLifecycleListener(
-      onResume: () => context.read<InternetStatusProvider>().onResume,
-      onHide: () => context.read<InternetStatusProvider>().onPauseHide,
-      onPause: () => context.read<InternetStatusProvider>().onPauseHide,
+      // onResume: () => context.read<InternetStatusProvider>().onResume,
+      // onHide: () => context.read<InternetStatusProvider>().onPauseHide,
+      // onPause: () => context.read<InternetStatusProvider>().onPauseHide,
       onDetach: () => context.read<InternetStatusProvider>().onDetach,
     );
   }

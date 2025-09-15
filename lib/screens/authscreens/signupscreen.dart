@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tsukuru/api/api_func.dart';
 import 'package:tsukuru/screens/authscreens/loginscreen.dart';
+import 'package:tsukuru/screens/authscreens/verify_email.dart';
 import 'package:tsukuru/widgets/uihelper.dart';
 
 class Signupscreen extends StatefulWidget {
@@ -16,6 +17,18 @@ class _SignupscreenState extends State<Signupscreen> {
   TextEditingController pass1Controller = TextEditingController();
   TextEditingController pass2Controller = TextEditingController();
   bool obscure = true;
+  double size = 0;
+  String text = '';
+  String? responseText;
+
+  @override
+  void dispose() {
+    usernameController.dispose();
+    emailController.dispose();
+    pass1Controller.dispose();
+    pass2Controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +37,8 @@ class _SignupscreenState extends State<Signupscreen> {
         elevation: 5,
         backgroundColor: Color(0XFFB53145),
         title: UiHelper.customText(
-          title: 'Login',
-          size: 22,
+          title: 'Signup',
+          size: 24,
           color: Colors.white,
         ),
         centerTitle: true,
@@ -39,7 +52,7 @@ class _SignupscreenState extends State<Signupscreen> {
               SizedBox(height: 15),
               Center(
                 child: Text(
-                  'Welcome back\n to Tsukuru!!!',
+                  'Welcome to\nTsukuru!!!',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 64,
@@ -143,7 +156,7 @@ class _SignupscreenState extends State<Signupscreen> {
                 ),
                 child: TextField(
                   obscureText: obscure,
-                  controller: pass1Controller,
+                  controller: pass2Controller,
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.fromLTRB(26, 10, 2, 2),
                     hint: Text(
@@ -164,15 +177,39 @@ class _SignupscreenState extends State<Signupscreen> {
                 ),
               ),
               SizedBox(height: 10),
+              UiHelper.customText(title: text, size: size, color: Colors.red),
               SizedBox(height: 45),
               ElevatedButton(
-                onPressed: () {
-                  singup(
-                    usernameController.text,
-                    emailController.text,
-                    pass1Controller.text,
-                    pass2Controller.text,
-                  );
+                onPressed: () async {
+                  final navigator = Navigator.of(context);
+                  if (usernameController.text.trim().isEmpty ||
+                      emailController.text.trim().isEmpty ||
+                      pass1Controller.text.trim().isEmpty ||
+                      pass2Controller.text.trim().isEmpty) {
+                    setState(() {
+                      text = 'No field must be empty!';
+                      size = 18;
+                    });
+                  } else {
+                    setState(() {
+                      text = '';
+                      size = 0;
+                    });
+                    responseText = await singup(
+                      usernameController.text,
+                      emailController.text,
+                      pass1Controller.text,
+                      pass2Controller.text,
+                    );
+                    if (responseText != null) {
+                      setState(() {
+                        text = responseText!;
+                        size = 18;
+                      });
+                    } else {
+                      navigator.push(MaterialPageRoute(builder: (context) => VerifyEmailScreen(email: emailController.text),));
+                    }
+                  }
                 },
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
                 child: UiHelper.customText(
@@ -181,6 +218,7 @@ class _SignupscreenState extends State<Signupscreen> {
                   color: Colors.black,
                 ),
               ),
+              SizedBox(height: 5),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

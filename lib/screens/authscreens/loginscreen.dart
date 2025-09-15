@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tsukuru/api/api_func.dart';
 import 'package:tsukuru/screens/authscreens/signupscreen.dart';
+
 // import 'package:tsukuru/screens/templatescreen.dart';
 import 'package:tsukuru/widgets/uihelper.dart';
 
@@ -15,6 +16,8 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passController = TextEditingController();
   bool obscure = true;
+  double size = 0;
+  String text = '';
 
   @override
   void dispose() {
@@ -74,7 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     contentPadding: EdgeInsets.fromLTRB(26, 5, 2, 2),
                     hint: Text(
                       'Enter Your Email ID',
-                      style: TextStyle(fontSize: 18, color: Colors.black),
+                      style: TextStyle(fontSize: 18, color: Colors.black, fontWeight: FontWeight.normal),
                     ),
                     border: InputBorder.none,
                   ),
@@ -98,7 +101,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     contentPadding: EdgeInsets.fromLTRB(26, 10, 2, 2),
                     hint: Text(
                       'Enter Your Password',
-                      style: TextStyle(fontSize: 18, color: Colors.black),
+                      style: TextStyle(fontSize: 18, color: Colors.black, fontWeight: FontWeight.normal),
                     ),
                     suffixIcon: IconButton(
                       onPressed: () {
@@ -114,13 +117,23 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               SizedBox(height: 10),
+              UiHelper.customText(title: text, size: size, color: Colors.red),
               SizedBox(height: 45),
               ElevatedButton(
                 onPressed: () async {
-                  await login(
-                    emailController.text,
-                    passController.text,
-                  );
+                  if (emailController.text.trim().isEmpty ||
+                      passController.text.trim().isEmpty) {
+                    setState(() {
+                      text = 'Email or Password fields cannot be empty!';
+                      size = 18;
+                    });
+                  } else {
+                    setState(() {
+                      text = '';
+                      size = 0;
+                    });
+                    await login(emailController.text, passController.text);
+                  }
                 },
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
                 child: UiHelper.customText(
@@ -129,6 +142,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   color: Colors.black,
                 ),
               ),
+              SizedBox(height: 5),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

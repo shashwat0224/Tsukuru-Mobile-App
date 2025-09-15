@@ -35,9 +35,9 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    updateCsrfToken();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _lifeCycleHandler = AppLifeCycleHandler(context);
+      updateCsrfToken();
     });
   }
 
