@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tsukuru/api/api_func.dart';
+// import 'package:tsukuru/api/api_func.dart';
 import 'package:tsukuru/screens/authscreens/signupscreen.dart';
 
-// import 'package:tsukuru/screens/templatescreen.dart';
+import 'package:tsukuru/screens/templatescreen.dart';
 import 'package:tsukuru/widgets/uihelper.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -120,20 +120,20 @@ class _LoginScreenState extends State<LoginScreen> {
               UiHelper.customText(title: text, size: size, color: Colors.red),
               SizedBox(height: 45),
               ElevatedButton(
-                onPressed: () async {
-                  if (emailController.text.trim().isEmpty ||
-                      passController.text.trim().isEmpty) {
-                    setState(() {
-                      text = 'Email or Password fields cannot be empty!';
-                      size = 18;
-                    });
-                  } else {
-                    setState(() {
-                      text = '';
-                      size = 0;
-                    });
-                    await login(emailController.text, passController.text);
-                  }
+                onPressed: () {
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => TemplateScreen(),));
+                  // if (emailController.text.trim().isEmpty ||
+                  //     passController.text.trim().isEmpty) {
+                  //   setState(() {
+                  //     text = 'Email or Password fields cannot be empty!';
+                  //     size = 18;
+                  //   });
+                  // } else {
+                  //   setState(() {
+                  //     text = '';
+                  //     size = 0;
+                  //   });
+                  // }
                 },
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
                 child: UiHelper.customText(

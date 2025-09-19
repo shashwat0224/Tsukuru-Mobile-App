@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pinput/pinput.dart';
-import 'package:tsukuru/api/api_func.dart';
 import 'package:tsukuru/widgets/countdowntimer.dart';
 import 'package:tsukuru/widgets/uihelper.dart';
 
@@ -125,7 +124,6 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
                   hapticFeedbackType: HapticFeedbackType.lightImpact,
                   onCompleted: (pin) {
                     debugPrint('onCompleted: $pin');
-                    verifyEmail(pin, widget.email);
                   },
                   onChanged: (value) {
                     debugPrint('onChanged: $value');
@@ -198,12 +196,11 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
                     onPressed: () {
                       if (allow) {
                         timerKey.currentState?.startTimer();
-                        print('resend');
+                        // print('resend');
                         setState(() {
                           allow = false;
                           color = Colors.black;
                         });
-                        resendCode(widget.email);
                       }
                     },
                     child: UiHelper.customText(

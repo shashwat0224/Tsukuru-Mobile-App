@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tsukuru/api/api_func.dart';
+// import 'package:tsukuru/api/api_func.dart';
 import 'package:tsukuru/screens/authscreens/loginscreen.dart';
 import 'package:tsukuru/screens/authscreens/verify_email.dart';
 import 'package:tsukuru/widgets/uihelper.dart';
@@ -195,20 +195,7 @@ class _SignupscreenState extends State<Signupscreen> {
                       text = '';
                       size = 0;
                     });
-                    responseText = await singup(
-                      usernameController.text,
-                      emailController.text,
-                      pass1Controller.text,
-                      pass2Controller.text,
-                    );
-                    if (responseText != null) {
-                      setState(() {
-                        text = responseText!;
-                        size = 18;
-                      });
-                    } else {
-                      navigator.push(MaterialPageRoute(builder: (context) => VerifyEmailScreen(email: emailController.text),));
-                    }
+                    navigator.push(MaterialPageRoute(builder: (context) => VerifyEmailScreen(email: emailController.text),));
                   }
                 },
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
