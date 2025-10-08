@@ -83,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
-              RecipesGridview(count: 10),
+              RecipesGridview(count: 8,title: 'title',directions: 'directions', id: 1, ingredients: [], image: '',),
             ],
           ),
         ),

@@ -16,7 +16,7 @@ class UiHelper {
     return Text(
       title,
       style: TextStyle(
-        fontFamily: fontFamily ?? "Raleway",
+        fontFamily: fontFamily ?? "Merriweather",
         fontWeight: fontWeight ?? FontWeight.bold,
         fontSize: size,
         color: color,

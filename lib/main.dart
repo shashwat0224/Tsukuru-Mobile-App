@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
-// import 'package:tsukuru/api/api_func.dart';
+import 'package:tsukuru/api/api_func.dart';
 import 'package:tsukuru/core/providers/internetstatus_provider.dart';
 import 'package:tsukuru/core/providers/navigation_provider.dart';
 import 'package:tsukuru/core/lifecycle/applifecycle.dart';
@@ -35,6 +35,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    updateCsrfToken();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _lifeCycleHandler = AppLifeCycleHandler(context);
     });

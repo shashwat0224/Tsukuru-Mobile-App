@@ -2,7 +2,8 @@ import 'dart:async';
 // import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:tsukuru/screens/authscreens/loginscreen.dart';
+// import 'package:tsukuru/screens/authscreens/loginscreen.dart';
+import 'package:tsukuru/screens/templatescreen.dart';
 import 'package:tsukuru/widgets/uihelper.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -21,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
         context,
         MaterialPageRoute(
           builder: (context) {
-            return LoginScreen();
+            return TemplateScreen();
           },
         ),
       );

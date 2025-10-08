@@ -26,10 +26,10 @@ class ExploreListview extends StatelessWidget {
             itemBuilder: (context, index) {
               return InkWell(
                 onTap: () {
-                  Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => RecipeScreen()),
-              );
+                //   Navigator.push(
+                // context,
+                // MaterialPageRoute(builder: (context) => RecipeScreen()),
+              // );
                 },
                 // onDoubleTap: () {
                 //   print('onDoubleTap');
