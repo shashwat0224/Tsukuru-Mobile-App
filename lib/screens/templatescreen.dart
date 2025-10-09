@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tsukuru/core/providers/navigation_provider.dart';
-import 'package:tsukuru/screens/explorescreen.dart';
+import 'package:tsukuru/screens/explorescreens/explorescreen.dart';
 import 'package:tsukuru/screens/searchscreen.dart';
 import 'package:tsukuru/widgets/custom_sidebar.dart';
 import 'package:tsukuru/screens/homescreen.dart';

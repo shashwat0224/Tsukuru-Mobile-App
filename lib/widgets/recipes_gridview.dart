@@ -28,7 +28,7 @@ class RecipesGridview extends StatelessWidget {
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
+          crossAxisCount: 1,
           crossAxisSpacing: 8.0,
           mainAxisSpacing: 8.0,
         ),
@@ -88,7 +88,7 @@ class RecipesGridview extends StatelessWidget {
                     SizedBox(height: 8),
                     Expanded(
                       child: Text(
-                        'qazwsxedc rfvtgbyhnujnm jm ijnmbv qazwsxedc rfvtgbyhnujnm jm ijnmbv qazwsxedc rfvtgbyhnujnm jm ijnmbv qazwsxedc rfvtgbyhnujnm jm ijnmbv qazwsxedc rfvtgbyhnujnm jm ijnmbv qazwsxedc rfvtgbyhnujnm jm ijnmbv ',
+                        directions,
                         style: TextStyle(
                           fontFamily: "AmaticSC",
                           fontWeight: FontWeight.bold,

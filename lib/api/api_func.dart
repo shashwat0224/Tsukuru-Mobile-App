@@ -1,6 +1,5 @@
 import 'dart:convert';
-import 'dart:io';
-import 'package:flutter/material.dart';
+import 'dart:core';
 import 'package:hive/hive.dart';
 import 'package:http/http.dart' as http;
 import 'package:tsukuru/constants/constant.dart';
@@ -79,8 +78,8 @@ Future<void> updateCsrfToken() async {
 Future<(String, List<Recipe>)> fetchRecipe(String search) async {
   var box = await Hive.openBox(tokenBox);
   String? csrfToken = box.get('csrfToken');
-  String detail = "";
   List<Recipe> recipe = [];
+  String detail;
   try {
     http.Response response = await client.get(
       Uri.parse("$api/get/recipe/$search"),
@@ -91,31 +90,21 @@ Future<(String, List<Recipe>)> fetchRecipe(String search) async {
       },
     );
     var data = jsonDecode(response.body);
-    if (response.statusCode == 404 || response.statusCode == 400) {
+    detail = (response.statusCode == 404 || response.statusCode == 400)
+        ? "No Recipes Found !"
+        : "";
+    data.forEach((rcp) {
       Recipe r = Recipe(
-        id: 0,
-        title: "",
-        ingredients: [],
-        directions: "",
-        imgname: "",
-        image: "",
+        id: rcp['id'] ?? 0,
+        title: rcp['title'] ?? "",
+        ingredients: List<String>.from(rcp['cleaned_ingredients'] ?? []),
+        directions: rcp['directions'] ?? "",
+        imgname: rcp['image_name'] ?? "",
+        image: rcp['image'] ?? "",
       );
       recipe.add(r);
-      return ("No Recipes Found !", recipe);
-    } else {
-      data.forEach((rcp) {
-        Recipe r = Recipe(
-          id: rcp['id'],
-          title: rcp['title'],
-          ingredients: rcp['cleaned_ingredients'],
-          directions: rcp['directions'],
-          imgname: rcp['image_name'],
-          image: rcp['image'],
-        );
-        recipe.add(r);
-      });
-      return ("", recipe);
-    }
+    });
+    return (detail, recipe);
   } catch (e) {
     Recipe r = Recipe(
       id: 0,
@@ -126,6 +115,7 @@ Future<(String, List<Recipe>)> fetchRecipe(String search) async {
       image: "",
     );
     recipe.add(r);
-    return ("An Error Occured : $e", recipe);
+    detail = "An Error Occured : $e";
+    return (detail, recipe);
   }
 }
