@@ -14,16 +14,14 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   final TextEditingController _searchController = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
+  int count = 0;
   bool isLoading = false;
   bool err = false;
   String detail = "";
   List<Recipe> result = [];
-  final List<String> _words = [
-    'paneer',
-    'chicken',
-    'pasta',
-    'salad',
-    'noodles',
+  final List<String> _words = ['rice', 'chicken',
+    'pasta', 'egg', 'noodles',
   ];
   int _index = 0;
   late Timer _timer;
@@ -53,8 +51,11 @@ class _SearchScreenState extends State<SearchScreen> {
     return Scaffold(
       body: SafeArea(
         child: Scrollbar(
-          thickness: 4,
-          child: SingleChildScrollView(
+          controller: _scrollController,
+          thumbVisibility: true,
+          interactive: true,
+          thickness: 6,
+          child: SingleChildScrollView(controller: _scrollController,
             padding: EdgeInsets.all(16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -76,8 +77,10 @@ class _SearchScreenState extends State<SearchScreen> {
                     controller: _searchController,
                     keyboardType: TextInputType.text,
                     onEditingComplete: () {
-                      if (_searchController.text.contains(
-                        RegExp(r'[^a-zA-Z]'),
+                      if (_searchController.text.contains(RegExp(
+                        r"[`~!@#$%^&*()_+-=₹[]\;'',./{}|:"
+                        "<>? 0123456789]",
+                      ),
                       )) {
                         setState(() {
                           err = true;
@@ -91,8 +94,6 @@ class _SearchScreenState extends State<SearchScreen> {
                       var record = await fetchRecipe(value.trim());
                       detail = record.$1;
                       result = record.$2;
-                      print(detail);
-                      print(result);
                       setState(() {
                         isLoading = false;
                       });
@@ -186,11 +187,10 @@ class _SearchScreenState extends State<SearchScreen> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           ...result.map((e) {
-                            int count = 0;
                             count++;
                             // print(e.ingredients);
                             return RecipesGridview(
-                              count: 0,
+                              count: count,
                               title: e.title,
                               directions: e.directions,
                               id: e.id,

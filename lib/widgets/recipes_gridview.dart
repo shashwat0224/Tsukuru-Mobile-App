@@ -24,14 +24,9 @@ class RecipesGridview extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: GridView.builder(
+      child: ListView.builder(
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 1,
-          crossAxisSpacing: 8.0,
-          mainAxisSpacing: 8.0,
-        ),
         itemCount: count,
         itemBuilder: (context, index) {
           return InkWell(
@@ -53,9 +48,9 @@ class RecipesGridview extends StatelessWidget {
             //   print('double tapped');
             // },
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 4.0),
+              padding: const EdgeInsets.symmetric(vertical: 4.0),
               child: Container(
-                height: 210,
+                height: 175,
                 padding: EdgeInsets.all(8.0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
@@ -76,28 +71,34 @@ class RecipesGridview extends StatelessWidget {
                       maxLines: 1,
                     ),
                     SizedBox(height: 8),
-                    Container(
-                      height: 90,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        color: Colors.white,
-                      ),
-                      child: UiHelper.customImage(img: 'hero-img.png'),
-                    ),
-                    SizedBox(height: 8),
-                    Expanded(
-                      child: Text(
-                        directions,
-                        style: TextStyle(
-                          fontFamily: "AmaticSC",
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12,
-                          color: Color(0XFFEDE490),
+                    Row(
+                      spacing: 12,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          height: 120,
+                          width: 180,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            color: Colors.white,
+                          ),
+                          child: UiHelper.customImage(img: 'hero-img.png'),
                         ),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 3,
-                      ),
+                        Expanded(
+                          child: Text(
+                            directions,
+                            style: TextStyle(
+                              fontFamily: "AmaticSC",
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12,
+                              color: Color(0XFFEDE490),
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 3,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),

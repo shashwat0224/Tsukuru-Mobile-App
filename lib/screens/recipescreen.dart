@@ -20,6 +20,8 @@ class RecipeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ScrollController _scrollController = ScrollController();
+
     List<Widget> ingredientsList = ingredients.map((ingredient) {
       // print(ingredients);
       // print(ingredient);
@@ -73,70 +75,78 @@ class RecipeScreen extends StatelessWidget {
         ],
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: <Widget>[
-              UiHelper.customText(title: title, size: 36, color: Colors.black),
-              Divider(
-                color: Colors.black,
-                thickness: 3,
-                indent: 8,
-                endIndent: 8,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0, bottom: 12.0),
-                child: UiHelper.customImage(
-                  img:
-                      'chocolate-custard-tartlets-in-almond-cookie-crust-with-saffron-ice-cream-232861.jpg',
+        child: Scrollbar(
+          controller: _scrollController,
+          thumbVisibility: true,
+          interactive: true,
+          thickness: 6,
+          child: SingleChildScrollView(
+            controller: _scrollController,
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: <Widget>[
+                UiHelper.customText(
+                    title: title, size: 36, color: Colors.black),
+                Divider(
+                  color: Colors.black,
+                  thickness: 3,
+                  indent: 8,
+                  endIndent: 8,
                 ),
-              ),
-              Row(
-                children: [
-                  UiHelper.customText(
-                    title: 'Ingredients ➣',
-                    size: 28,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black,
-                    fontFamily: 'Alata',
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0, bottom: 12.0),
+                  child: UiHelper.customImage(
+                    img:
+                    'chocolate-custard-tartlets-in-almond-cookie-crust-with-saffron-ice-cream-232861.jpg',
                   ),
-                ],
-              ),
-              SizedBox(height: 8),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: ingredientsList,
-              ),
-              SizedBox(height: 4.0),
-              Row(
-                children: [
-                  UiHelper.customText(
-                    title: 'Directions ➣',
-                    size: 28,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black,
-                    fontFamily: 'Alata',
-                  ),
-                ],
-              ),
-              SizedBox(height: 8.0),
-              Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      directions,
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'Merriweather',
-                      ),
-                      textAlign: TextAlign.justify,
+                ),
+                Row(
+                  children: [
+                    UiHelper.customText(
+                      title: 'Ingredients ➣',
+                      size: 28,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black,
+                      fontFamily: 'Alata',
                     ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+                SizedBox(height: 8),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: ingredientsList,
+                ),
+                SizedBox(height: 4.0),
+                Row(
+                  children: [
+                    UiHelper.customText(
+                      title: 'Directions ➣',
+                      size: 28,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black,
+                      fontFamily: 'Alata',
+                    ),
+                  ],
+                ),
+                SizedBox(height: 8.0),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        directions,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: 'Merriweather',
+                        ),
+                        textAlign: TextAlign.justify,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

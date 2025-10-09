@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:core';
+import 'package:flutter/cupertino.dart';
 import 'package:hive/hive.dart';
 import 'package:http/http.dart' as http;
 import 'package:tsukuru/constants/constant.dart';
@@ -16,11 +17,10 @@ Future<void> updateCsrfToken() async {
         ?.split(';')
         .firstWhere((c) => c.trim().startsWith("csrftoken="))
         .split("=")[1];
-    print(csrfToken);
     var box = await Hive.openBox(tokenBox);
     box.put('csrfToken', csrfToken);
   } catch (e) {
-    print(e);
+    debugPrint("$e");
   }
 }
 
@@ -115,7 +115,53 @@ Future<(String, List<Recipe>)> fetchRecipe(String search) async {
       image: "",
     );
     recipe.add(r);
-    detail = "An Error Occured : $e";
+    detail = "An Error Occurred : $e";
+    return (detail, recipe);
+  }
+}
+
+Future<(String, List<Recipe>)> fetchLimitedRecipe(String search,
+    int count) async {
+  var box = await Hive.openBox(tokenBox);
+  String? csrfToken = box.get('csrfToken');
+  List<Recipe> recipe = [];
+  String detail;
+  try {
+    http.Response response = await client.get(
+      Uri.parse("$api/get/recipe/$search/$count"),
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": csrfToken ?? "",
+        "Cookie": "csrftoken=$csrfToken",
+      },
+    );
+    var data = jsonDecode(response.body);
+    detail = (response.statusCode == 404 || response.statusCode == 400)
+        ? "No Recipes Found !"
+        : "";
+    data.forEach((rcp) {
+      Recipe r = Recipe(
+        id: rcp['id'] ?? 0,
+        title: rcp['title'] ?? "",
+        ingredients: List<String>.from(rcp['cleaned_ingredients'] ?? []),
+        directions: rcp['directions'] ?? "",
+        imgname: rcp['image_name'] ?? "",
+        image: rcp['image'] ?? "",
+      );
+      recipe.add(r);
+    });
+    return (detail, recipe);
+  } catch (e) {
+    Recipe r = Recipe(
+      id: 0,
+      title: "",
+      ingredients: [],
+      directions: "",
+      imgname: "",
+      image: "",
+    );
+    recipe.add(r);
+    detail = "An Error Occurred : $e";
     return (detail, recipe);
   }
 }
