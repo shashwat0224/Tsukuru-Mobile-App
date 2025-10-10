@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:tsukuru/api/api_func.dart';
 import 'package:tsukuru/core/providers/navigation_provider.dart';
 import 'package:tsukuru/models/recipes_models.dart';
-import 'package:tsukuru/widgets/recipes_listview.dart';
+import 'package:tsukuru/widgets/recipes_item.dart';
 import 'package:tsukuru/widgets/uihelper.dart';
 import 'dart:math';
 
@@ -157,7 +157,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     ...result.map((e) {
                       // print(e.ingredients);
-                      return RecipesListview(
+                      return RecipesItem(
                         title: e.title,
                         directions: e.directions,
                         id: e.id,

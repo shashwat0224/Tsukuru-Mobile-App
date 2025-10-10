@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:tsukuru/api/api_func.dart';
 import 'package:tsukuru/models/recipes_models.dart';
-import 'package:tsukuru/widgets/recipes_listview.dart';
+import 'package:tsukuru/widgets/recipes_item.dart';
 import 'package:tsukuru/widgets/uihelper.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -15,8 +15,8 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   final TextEditingController _searchController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
-  bool isLoading = false;
   bool err = false;
+  bool isLoading = false;
   String detail = "";
   List<Recipe> result = [];
   final List<String> _words = ['rice', 'chicken',
@@ -186,8 +186,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           ...result.map((e) {
-                            // print(e.ingredients);
-                            return RecipesListview(
+                            return RecipesItem(
                               title: e.title,
                               directions: e.directions,
                               id: e.id,
