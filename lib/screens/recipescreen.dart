@@ -20,7 +20,7 @@ class RecipeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ScrollController _scrollController = ScrollController();
+    final ScrollController scrollController = ScrollController();
 
     List<Widget> ingredientsList = ingredients.map((ingredient) {
       // print(ingredients);
@@ -76,12 +76,12 @@ class RecipeScreen extends StatelessWidget {
       ),
       body: SafeArea(
         child: Scrollbar(
-          controller: _scrollController,
+          controller: scrollController,
           thumbVisibility: true,
           interactive: true,
           thickness: 6,
           child: SingleChildScrollView(
-            controller: _scrollController,
+            controller: scrollController,
             padding: const EdgeInsets.all(16.0),
             child: Column(
               children: <Widget>[

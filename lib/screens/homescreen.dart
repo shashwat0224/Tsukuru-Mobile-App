@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tsukuru/api/api_func.dart';
 import 'package:tsukuru/core/providers/navigation_provider.dart';
-import 'package:tsukuru/widgets/recipes_gridview.dart';
+import 'package:tsukuru/models/recipes_models.dart';
+import 'package:tsukuru/widgets/recipes_listview.dart';
 import 'package:tsukuru/widgets/uihelper.dart';
+import 'dart:math';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,6 +16,37 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final ScrollController _scrollController = ScrollController();
+  bool isLoading = true;
+  String detail = "";
+  List<Recipe> result = [];
+  List<String> trending = [
+    'rice',
+    'chicken',
+    'pasta',
+    'egg',
+    'noodles',
+    'bacon',
+    'chickpeas',
+    'potato',
+    'pizza',
+    'milkshake'
+  ];
+  int random = Random().nextInt(10);
+
+  Future<void> _fetchData() async {
+    var record = await fetchLimitedRecipe(trending[random], 5);
+    detail = record.$1;
+    result = record.$2;
+    setState(() {
+      isLoading = false;
+    });
+  }
+
+  @override
+  void initState() {
+    _fetchData();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -91,13 +125,47 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ],
                 ),
-                RecipesGridview(
-                  count: 8,
-                  title: 'title',
-                  directions: 'directions',
-                  id: 1,
-                  ingredients: [],
-                  image: '',
+                (isLoading)
+                    ? Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(height: 40),
+                    CircularProgressIndicator(color: Colors.blue),
+                  ],
+                )
+                    : (detail != "")
+                    ? Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(height: 30),
+                    Icon(
+                      (detail == "No Recipes Found !")
+                          ? Icons.no_meals
+                          : Icons.error,
+                      size: 100,
+                    ),
+                    UiHelper.customText(
+                      title: detail,
+                      size: 36,
+                      color: Colors.blue,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ],
+                )
+                    : Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    ...result.map((e) {
+                      // print(e.ingredients);
+                      return RecipesListview(
+                        title: e.title,
+                        directions: e.directions,
+                        id: e.id,
+                        ingredients: e.ingredients,
+                        image: '',
+                      );
+                    }),
+                  ],
                 ),
               ],
             ),
